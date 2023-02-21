@@ -1,148 +1,173 @@
-import React from "react"
-import { Button, Card, Col, Input, Row, Select } from "antd"
-import { Link } from "react-router-dom"
+import React, { useEffect, useState } from "react";
+import { Button, Card, Col, Input, Row, Select, Space } from "antd";
+import { Link } from "react-router-dom";
 
-import CustomBreadcrumb from "../../components/CustomBreadcrumb"
+import CustomBreadcrumb from "../../components/CustomBreadcrumb";
+import httpClient from "../../libs/axios";
+import { TIPOS_SOPORTE } from "../../constants";
 
 const PageIncidenciasAdd = () => {
-	return (
-		<>
-			<CustomBreadcrumb>
-				<Link to="..">Incidencias</Link>
-			</CustomBreadcrumb>
-			<Card title="Incidencias - Agregar">
-				<form action="">
-					<Row gutter={15}>
-						<Col span={8}>
-							<div className="form-item">
-								<label className="form-label">Tipo de atención</label>
-								<Select
-									defaultValue="0"
-									style={{
-										display: "block",
-									}}
-									// onChange={handleChange}
-									options={[
-										{
-											value: "0",
-											label: "Bien Patrimonial",
-										},
-										{
-											value: "1",
-											label: "Bien Personal",
-										},
-										{
-											value: "2",
-											label: "Otros",
-										},
-									]}
-								/>
-							</div>
-						</Col>
-						<Col span={8}>
-							<div className="form-item">
-								<label className="form-label">Tipo de soporte</label>
-								<Select
-									defaultValue="0"
-									style={{
-										display: "block",
-									}}
-									options={[
-										{
-											value: "0",
-											label: "Soporte Contadora",
-										},
-										{
-											value: "1",
-											label: "Soporte Redes",
-										},
-										{
-											value: "2",
-											label: "Instalación de SIADEG",
-										},
-									]}
-								/>
-							</div>
-						</Col>
-						<Col span={8}>
-							<div className="form-item">
-								<label className="form-label">Informe de referencia</label>
-								<Input placeholder="" />
-							</div>
-						</Col>
-						<Col span={8}>
-							<div className="form-item">
-								<label className="form-label">Nombre del solicitante</label>
-								<Input />
-							</div>
-						</Col>
-						<Col span={8}>
-							<div className="form-item">
-								<label className="form-label">Celular</label>
-								<Input />
-							</div>
-						</Col>
-						<Col span={8}>
-							<div className="form-item">
-								<label className="form-label">Oficina</label>
-								<Select
-									defaultValue="0"
-									style={{
-										display: "block",
-									}}
-									options={[
-										{
-											value: "0",
-											label: "Oficina TIC",
-										},
-										{
-											value: "1",
-											label: "Oficina OPMI",
-										},
-										{
-											value: "2",
-											label: "Alcaldía",
-										},
-									]}
-								/>
-							</div>
-						</Col>
-					</Row>
+    const [tipoSoporte, setTipoSoporte] = useState(null);
+    const [container, setContainer] = useState({
+        tiposSoporte: [],
+        especialistas: [],
+    });
 
-					<div className="form-item">
-						<label className="form-label">Responsable</label>
-						<Select
-							defaultValue="0"
-							style={{
-								display: "block",
-							}}
-							options={[
-								{
-									value: "0",
-									label: "Greis",
-								},
-								{
-									value: "1",
-									label: "Diego",
-								},
-								{
-									value: "2",
-									label: "osso",
-								},
-							]}
-						/>
-					</div>
+    const fetchData = async () => {
+        try {
+            const response = await httpClient.get("/incidencias/agregar");
+            setContainer({
+                tiposSoporte: response.data.content.tiposAtencion,
+                especialistas: response.data.content.especialistas,
+            });
+        } catch (error) {}
+    };
 
-					<div className="form-item">
-						<label className="form-label">Solicita</label>
-						<Input.TextArea />
-					</div>
+    useEffect(() => {
+        fetchData();
+    }, []);
 
-					<Button type="primary">Guardar</Button>
-				</form>
-			</Card>
-		</>
-	)
-}
+    return (
+        <>
+            <CustomBreadcrumb>
+                <Link to="..">Incidencias</Link>
+            </CustomBreadcrumb>
+            <Card title="Incidencias - Agregar">
+                <form action="">
+                    <Row gutter={15}>
+                        <Col span={8}>
+                            <div className="form-item">
+                                <label className="form-label">
+                                    Tipo de atención
+                                </label>
+                                <Select
+                                    defaultValue="0"
+                                    style={{
+                                        display: "block",
+                                    }}
+                                    // onChange={handleChange}
+                                    options={[
+                                        {
+                                            value: "0",
+                                            label: "Bien Patrimonial",
+                                        },
+                                        {
+                                            value: "1",
+                                            label: "Bien Personal",
+                                        },
+                                        {
+                                            value: "2",
+                                            label: "Otros",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                        </Col>
+                        <Col span={8}>
+                            <div className="form-item">
+                                <label className="form-label">
+                                    Tipo de soporte
+                                </label>
+                                <Space
+                                    size="small"
+                                    direction="vertical"
+                                    style={{ width: "100%" }}
+                                >
+                                    <Select
+                                        onChange={setTipoSoporte}
+                                        style={{
+                                            display: "block",
+                                        }}
+                                        showSearch
+                                        optionFilterProp="label"
+                                        options={container.tiposSoporte.map(
+                                            (item) => ({
+                                                value: item.idtipo_atencion,
+                                                label: item.tipo_atencion,
+                                            })
+                                        )}
+                                    />
 
-export default PageIncidenciasAdd
+                                    {tipoSoporte == TIPOS_SOPORTE.OTROS && (
+                                        <Input placeholder="Otro tipo..." />
+                                    )}
+                                </Space>
+                            </div>
+                        </Col>
+                        <Col span={8}>
+                            <div className="form-item">
+                                <label className="form-label">
+                                    Informe de referencia
+                                </label>
+                                <Input placeholder="" />
+                            </div>
+                        </Col>
+                        <Col span={8}>
+                            <div className="form-item">
+                                <label className="form-label">
+                                    Nombre del solicitante
+                                </label>
+                                <Input />
+                            </div>
+                        </Col>
+                        <Col span={8}>
+                            <div className="form-item">
+                                <label className="form-label">Celular</label>
+                                <Input />
+                            </div>
+                        </Col>
+                        <Col span={8}>
+                            <div className="form-item">
+                                <label className="form-label">Oficina</label>
+                                <Select
+                                    defaultValue="0"
+                                    style={{
+                                        display: "block",
+                                    }}
+                                    options={[
+                                        {
+                                            value: "0",
+                                            label: "Oficina TIC",
+                                        },
+                                        {
+                                            value: "1",
+                                            label: "Oficina OPMI",
+                                        },
+                                        {
+                                            value: "2",
+                                            label: "Alcaldía",
+                                        },
+                                    ]}
+                                />
+                            </div>
+                        </Col>
+                    </Row>
+
+                    <div className="form-item">
+                        <label className="form-label">Responsable</label>
+                        <Select
+                            style={{
+                                display: "block",
+                            }}
+                            showSearch
+                            optionFilterProp="label"
+                            options={container.especialistas.map((item) => ({
+                                value: item.id,
+                                label: item.nombreCompleto,
+                            }))}
+                        />
+                    </div>
+
+                    <div className="form-item">
+                        <label className="form-label">Solicita</label>
+                        <Input.TextArea />
+                    </div>
+
+                    <Button type="primary">Guardar</Button>
+                </form>
+            </Card>
+        </>
+    );
+};
+
+export default PageIncidenciasAdd;
