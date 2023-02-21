@@ -1,0 +1,29 @@
+.container {
+	width: 100%;
+	max-width: 1320px;
+	margin: 0 auto;
+	padding: 15px;
+}
+
+.form-item {
+	margin-bottom: 10px;
+}
+
+.form-label {
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+/* utils */
+
+.fs-12 {
+	font-size: 12px;
+}
+
+.block {
+	display: block;
+}
+
+.mb-0 {
+	margin-bottom: 0;
+}
