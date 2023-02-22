@@ -29695,7 +29695,7 @@ var dataSource = [{
   codigo: "123456",
   denominacion: "máquina de greis",
   marca: "lenovo",
-  modelo: "caca",
+  modelo: "cars",
   serie: "123",
   color: "pink",
   referenciaDeFalla: "por manco",

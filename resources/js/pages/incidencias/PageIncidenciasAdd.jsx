@@ -11,6 +11,10 @@ const PageIncidenciasAdd = () => {
     const [container, setContainer] = useState({
         tiposSoporte: [],
         especialistas: [],
+        nombreoficina: []
+       
+        
+      
     });
 
     const fetchData = async () => {
@@ -19,6 +23,9 @@ const PageIncidenciasAdd = () => {
             setContainer({
                 tiposSoporte: response.data.content.tiposAtencion,
                 especialistas: response.data.content.especialistas,
+                nombreoficina: response.data.content.nombreoficina,
+                
+                
             });
         } catch (error) {}
     };
@@ -120,25 +127,16 @@ const PageIncidenciasAdd = () => {
                             <div className="form-item">
                                 <label className="form-label">Oficina</label>
                                 <Select
-                                    defaultValue="0"
-                                    style={{
-                                        display: "block",
-                                    }}
-                                    options={[
-                                        {
-                                            value: "0",
-                                            label: "Oficina TIC",
-                                        },
-                                        {
-                                            value: "1",
-                                            label: "Oficina OPMI",
-                                        },
-                                        {
-                                            value: "2",
-                                            label: "Alcaldía",
-                                        },
-                                    ]}
-                                />
+                            style={{
+                                display: "block",
+                            }}
+                            showSearch
+                            optionFilterProp="label"
+                            options={container.nombreoficina.map((item) => ({
+                                value: item.id,
+                                label: item.dependeincia_oficina,
+                            }))}
+                        />
                             </div>
                         </Col>
                     </Row>

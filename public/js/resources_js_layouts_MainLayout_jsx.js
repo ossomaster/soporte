@@ -9217,7 +9217,7 @@ var MainLayout = function MainLayout() {
           padding: "0 24px",
           height: 40
         },
-        src: "https://www.pngfind.com/pngs/m/34-349340_horizontal-white-logo-jetpack-logo-png-transparent-png.png",
+        src: "http://192.168.0.20/soporte-informatico/vistas/img/plantilla/icono-blanco.png",
         alt: "Urusayhua"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
         theme: "dark",

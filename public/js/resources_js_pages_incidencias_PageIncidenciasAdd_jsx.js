@@ -23768,7 +23768,8 @@ var PageIncidenciasAdd = function PageIncidenciasAdd() {
     setTipoSoporte = _useState2[1];
   var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       tiposSoporte: [],
-      especialistas: []
+      especialistas: [],
+      nombreoficina: []
     }),
     _useState4 = _slicedToArray(_useState3, 2),
     container = _useState4[0],
@@ -23786,7 +23787,8 @@ var PageIncidenciasAdd = function PageIncidenciasAdd() {
             response = _context.sent;
             setContainer({
               tiposSoporte: response.data.content.tiposAtencion,
-              especialistas: response.data.content.especialistas
+              especialistas: response.data.content.especialistas,
+              nombreoficina: response.data.content.nombreoficina
             });
             _context.next = 9;
             break;
@@ -23912,20 +23914,17 @@ var PageIncidenciasAdd = function PageIncidenciasAdd() {
                 className: "form-label",
                 children: "Oficina"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(antd__WEBPACK_IMPORTED_MODULE_9__["default"], {
-                defaultValue: "0",
                 style: {
                   display: "block"
                 },
-                options: [{
-                  value: "0",
-                  label: "Oficina TIC"
-                }, {
-                  value: "1",
-                  label: "Oficina OPMI"
-                }, {
-                  value: "2",
-                  label: "Alcaldía"
-                }]
+                showSearch: true,
+                optionFilterProp: "label",
+                options: container.nombreoficina.map(function (item) {
+                  return {
+                    value: item.id,
+                    label: item.dependeincia_oficina
+                  };
+                })
               })]
             })
           })]

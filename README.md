@@ -23,4 +23,3 @@
 -   `php artisan serve` para prender el servidor
 -   `npm run watch` para compilar los archivos js
 
-caia iama sss

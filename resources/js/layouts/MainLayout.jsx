@@ -70,7 +70,7 @@ const MainLayout = () => {
 						padding: "0 24px",
 						height: 40,
 					}}
-					src="https://www.pngfind.com/pngs/m/34-349340_horizontal-white-logo-jetpack-logo-png-transparent-png.png"
+					src="http://192.168.0.20/soporte-informatico/vistas/img/plantilla/icono-blanco.png"
 					alt="Urusayhua"
 				/>
 				<Menu theme="dark" mode="inline" defaultSelectedKeys={["osso", "twitter"]} items={items} />
