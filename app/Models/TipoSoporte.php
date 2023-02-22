@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TipoAtencion extends Model
+class TipoSoporte extends Model
 {
     use HasFactory;
 
-    protected $table = 'tbl_tipos_atencion';
-    protected $primaryKey = 'idtipo_atencion';
+    protected $table = 'tipos_soporte';
+    protected $primaryKey = 'id';
     public $timestamps = false;
-    protected $fillable = ['tipo_atencion'];
+    protected $fillable = ['nombre'];
 }

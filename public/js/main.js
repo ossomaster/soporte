@@ -4299,7 +4299,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".container {\r\n\twidth: 100%;\r\n\tmax-width: 1320px;\r\n\tmargin: 0 auto;\r\n\tpadding: 15px;\r\n}\r\n\r\n.form-item {\r\n\tmargin-bottom: 10px;\r\n}\r\n\r\n.form-label {\r\n\tdisplay: inline-block;\r\n\tmargin-bottom: 5px;\r\n}\r\n\r\n/* utils */\r\n\r\n.fs-12 {\r\n\tfont-size: 12px;\r\n}\r\n\r\n.block {\r\n\tdisplay: block;\r\n}\r\n\r\n.mb-0 {\r\n\tmargin-bottom: 0;\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".container {\n\twidth: 100%;\n\tmax-width: 1320px;\n\tmargin: 0 auto;\n\tpadding: 15px;\n}\n\n.form-item {\n\tmargin-bottom: 10px;\n}\n\n.form-label {\n\tdisplay: inline-block;\n\tmargin-bottom: 5px;\n}\n\n/* utils */\n\n.fs-12 {\n\tfont-size: 12px;\n}\n\n.block {\n\tdisplay: block;\n}\n\n.mb-0 {\n\tmargin-bottom: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

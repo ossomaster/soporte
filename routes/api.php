@@ -19,4 +19,6 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+Route::get('/incidencias', [IncidenciasController::class, 'index']);
 Route::get('/incidencias/agregar', [IncidenciasController::class, 'agregar']);
+Route::post('/incidencias', [IncidenciasController::class, 'guardar']);

@@ -1,3 +1,3 @@
 export const TIPOS_SOPORTE = {
-    OTROS: 11,
+    OTROS: 10,
 };

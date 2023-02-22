@@ -1,90 +1,91 @@
-import React from "react"
-import { Button, Card, Space, Table, Typography } from "antd"
-import { EditOutlined, DeleteOutlined } from "@ant-design/icons"
-import CustomBreadcrumb from "../../components/CustomBreadcrumb"
-import { Link } from "react-router-dom"
+import React, { useEffect, useState } from "react";
+import { Button, Card, Space, Table } from "antd";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
-const dataSource = [
-	{
-		key: "1",
-		codigo: "123456",
-		denominacion: "máquina de greis",
-		marca: "lenovo",
-		modelo: "cars",
-		serie: "123",
-		color: "pink",
-		referenciaDeFalla: "por manco",
-		accesorios: "xd",
-	},
-]
-
-const columns = [
-	{
-		title: "Código",
-		dataIndex: "codigo",
-		key: "codigo",
-	},
-	{
-		title: "Denominación",
-		dataIndex: "denominacion",
-		key: "denominacion",
-	},
-	{
-		title: "Marca",
-		dataIndex: "marca",
-		key: "marca",
-	},
-	{
-		title: "Modelo",
-		dataIndex: "modelo",
-		key: "modelo",
-	},
-	{
-		title: "Serie",
-		dataIndex: "serie",
-		key: "serie",
-	},
-	{
-		title: "Color",
-		dataIndex: "color",
-		key: "color",
-	},
-	{
-		title: "Referencia de falla",
-		dataIndex: "referenciaDeFalla",
-		key: "referenciaDeFalla",
-	},
-	{
-		title: "Accesorios",
-		dataIndex: "accesorios",
-		key: "accesorios",
-	},
-	{
-		title: "Acciones",
-		dataIndex: "actions",
-		key: "actions",
-		render: () => {
-			return (
-				<Space>
-					<Link to="1/editar">
-						<Button type="primary" size="small" icon={<EditOutlined />} />
-					</Link>
-					<Button danger size="small" icon={<DeleteOutlined />} />
-				</Space>
-			)
-		},
-	},
-]
+import CustomBreadcrumb from "../../components/CustomBreadcrumb";
+import httpClient from "../../libs/axios";
 
 const PageIncidencias = () => {
-	return (
-		<>
-			<CustomBreadcrumb />
-			<Card title="Incidencias" extra={<Link to="agregar">Nueva incidencia</Link>}>
-				<Table size="small" dataSource={dataSource} columns={columns} />
-			</Card>
-		</>
-	)
-}
+    const [container, setContainer] = useState({
+        incidencias: [],
+    });
+    const { incidencias } = container;
 
-export default PageIncidencias
+    const columns = [
+        {
+            title: "Informe",
+            dataIndex: "informe",
+            key: "informe",
+        },
+        {
+            title: "Solicitante",
+            dataIndex: "solicitante",
+            key: "solicitante",
+        },
+        {
+            title: "Celular",
+            dataIndex: "celular",
+            key: "celular",
+        },
+        {
+            title: "Descripción",
+            dataIndex: "descripcion",
+            key: "descripcion",
+        },
+        {
+            title: "Oficina",
+            dataIndex: ["oficina", "nombre"],
+            key: "oficina_id",
+        },
+        {
+            title: "Acciones",
+            dataIndex: "actions",
+            key: "actions",
+            render: () => {
+                return (
+                    <Space>
+                        <Link to="1/editar">
+                            <Button
+                                type="primary"
+                                size="small"
+                                icon={<EditOutlined />}
+                            />
+                        </Link>
+                        <Button danger size="small" icon={<DeleteOutlined />} />
+                    </Space>
+                );
+            },
+        },
+    ];
+
+    const fetchData = async () => {
+        try {
+            const response = await httpClient.get("/incidencias");
+            setContainer(response.data.content);
+        } catch (error) {}
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    return (
+        <>
+            <CustomBreadcrumb />
+            <Card
+                title="Incidencias"
+                extra={<Link to="agregar">Nueva incidencia</Link>}
+            >
+                <Table
+                    size="small"
+                    rowKey="id"
+                    dataSource={incidencias}
+                    columns={columns}
+                />
+            </Card>
+        </>
+    );
+};
+
+export default PageIncidencias;

@@ -18,10 +18,13 @@
     },
     "dependencies": {
         "@ant-design/icons": "^5.0.1",
+        "@hookform/resolvers": "^2.9.11",
         "antd": "^5.2.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-hook-form": "^7.43.2",
         "react-quill": "^2.0.0",
-        "react-router-dom": "^6.8.1"
+        "react-router-dom": "^6.8.1",
+        "yup": "^1.0.0"
     }
 }

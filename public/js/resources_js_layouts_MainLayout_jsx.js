@@ -9217,7 +9217,7 @@ var MainLayout = function MainLayout() {
           padding: "0 24px",
           height: 40
         },
-        src: "http://192.168.0.20/soporte-informatico/vistas/img/plantilla/icono-blanco.png",
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Facebook_New_Logo_%282015%29.svg/2560px-Facebook_New_Logo_%282015%29.svg.png",
         alt: "Urusayhua"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(antd__WEBPACK_IMPORTED_MODULE_4__["default"], {
         theme: "dark",

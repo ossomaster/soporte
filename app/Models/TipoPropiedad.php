@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class NombreOficina extends Model
+class TipoPropiedad extends Model
 {
     use HasFactory;
 
-    protected $table = 'tbl_datos_impresoras';
+    protected $table = 'tipos_propiedad';
     protected $primaryKey = 'id';
     public $timestamps = false;
-    protected $fillable = ['dependeincia_oficina'];
+    protected $fillable = ['nombre'];
 }
