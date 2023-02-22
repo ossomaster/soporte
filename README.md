@@ -17,7 +17,7 @@
 -   `git add .`
 -   `git commit -m 'tu mensaje aquí'`
 -   `git push origin master`
-
+s
 ### Cuando quieras desarrollar
 
 -   `php artisan serve` para prender el servidor
